@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgl0nxkb6w5qo"]
+
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/logger.gd" id="1_gfhlh"]
+
+[node name="Logger" type="Node"]
+script = ExtResource("1_gfhlh")

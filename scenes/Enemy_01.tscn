@@ -1,0 +1,398 @@
+[gd_scene load_steps=32 format=3 uid="uid://dbt4hu7je2g1f"]
+
+[ext_resource type="Script" path="res://scripts/enemy_01.gd" id="1_spl8u"]
+[ext_resource type="SpriteFrames" uid="uid://cgv7ihfwmuoh" path="res://materials/Enemy01_Spriteframes.tres" id="2_nsn74"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc.gd" id="3_d0pjy"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc_state.gd" id="5_yj258"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc_goal.gd" id="6_rcoc4"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc_action.gd" id="7_6gc6m"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/custom_expression.gd" id="7_8u1s1"]
+[ext_resource type="Script" path="res://scripts/enemy_01_npc_action_dead.gd" id="9_1cher"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc_planner.gd" id="9_05ykn"]
+[ext_resource type="PackedScene" uid="uid://dgl0nxkb6w5qo" path="res://addons/godot_gd_simple_goap/Logger.tscn" id="10_gub3b"]
+
+[sub_resource type="Animation" id="Animation_0tuy2"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["ATTACK"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/AnimatedSprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_wetn0"]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["DEAD"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/AnimatedSprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.5), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ucc6h"]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["HURT"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/AnimatedSprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u4l8p"]
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["IDLE"]
+}
+
+[sub_resource type="Animation" id="Animation_wnyq0"]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["MOVE"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vgew8"]
+_data = {
+"ATTACK": SubResource("Animation_0tuy2"),
+"DEAD": SubResource("Animation_wetn0"),
+"HURT": SubResource("Animation_ucc6h"),
+"IDLE": SubResource("Animation_u4l8p"),
+"MOVE": SubResource("Animation_wnyq0")
+}
+
+[sub_resource type="Resource" id="Resource_eonp1"]
+script = ExtResource("7_8u1s1")
+expression = &"iam.hp > 0"
+parameters = Array[StringName]([&"iam"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_wahhp"]
+script = ExtResource("7_8u1s1")
+expression = &"abs(iam.position.x - enemy.position.x) <= 50"
+parameters = Array[StringName]([&"iam", &"enemy"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_3ookv"]
+script = ExtResource("7_8u1s1")
+expression = &"enemy.hp <= 0 || randi_range(0, 10) == 0"
+parameters = Array[StringName]([&"enemy"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_g3i08"]
+script = ExtResource("7_8u1s1")
+expression = &"iam.hp > 50"
+parameters = Array[StringName]([&"iam"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_qouj6"]
+script = ExtResource("7_8u1s1")
+expression = &"abs(iam.position.x - enemy.position.x) > 50"
+parameters = Array[StringName]([&"iam", &"enemy"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_w4jer"]
+script = ExtResource("7_8u1s1")
+expression = &"iam.position.x + 10"
+parameters = Array[StringName]([&"iam"])
+assigned_state = &"iam.pos.x"
+
+[sub_resource type="Resource" id="Resource_u4niw"]
+script = ExtResource("7_8u1s1")
+expression = &"abs(iam.position.x - enemy.position.x) <= 50"
+parameters = Array[StringName]([&"iam", &"enemy"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_ho121"]
+script = ExtResource("7_8u1s1")
+expression = &"enemy.hp > 0"
+parameters = Array[StringName]([&"enemy"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_r6or0"]
+script = ExtResource("7_8u1s1")
+expression = &"enemy.hrt == false"
+parameters = Array[StringName]([&"enemy"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_tnw1d"]
+script = ExtResource("7_8u1s1")
+expression = &"true"
+parameters = Array[StringName]([])
+assigned_state = &"enemy.hrt"
+
+[sub_resource type="Resource" id="Resource_mjvug"]
+script = ExtResource("7_8u1s1")
+expression = &"enemy.hp - randi_range(5, 20)"
+parameters = Array[StringName]([&"enemy"])
+assigned_state = &"enemy.hp"
+
+[sub_resource type="Resource" id="Resource_bnc4n"]
+script = ExtResource("7_8u1s1")
+expression = &"iam.hrt == true"
+parameters = Array[StringName]([&"iam"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_riu4i"]
+script = ExtResource("7_8u1s1")
+expression = &"iam.hp > 0"
+parameters = Array[StringName]([&"iam"])
+assigned_state = &""
+
+[sub_resource type="Resource" id="Resource_0rpcc"]
+script = ExtResource("7_8u1s1")
+expression = &"false"
+parameters = Array[StringName]([])
+assigned_state = &"iam.hrt"
+
+[sub_resource type="Resource" id="Resource_u10he"]
+script = ExtResource("7_8u1s1")
+expression = &"iam.hp <= 0"
+parameters = Array[StringName]([&"iam"])
+assigned_state = &""
+
+[node name="Enemy01" type="Node2D" node_paths=PackedStringArray("npc_state") groups=["enemy01"]]
+script = ExtResource("1_spl8u")
+npc_state = NodePath("Npc/NpcState")
+
+[node name="Physics" type="Node2D" parent="."]
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+self_modulate = Color(2, 1, 1, 1)
+texture_filter = 1
+sprite_frames = ExtResource("2_nsn74")
+animation = &"MOVE"
+offset = Vector2(0, -16)
+
+[node name="Line2D" type="Line2D" parent="Visuals"]
+self_modulate = Color(1.5, 1.5, 1.5, 1)
+scale = Vector2(0.25, 0.25)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vgew8")
+}
+
+[node name="Npc" type="Node" parent="." node_paths=PackedStringArray("npc_state", "npc_planner", "animation_player", "logger")]
+script = ExtResource("3_d0pjy")
+npc_named = "Enemy 01"
+npc_state = NodePath("NpcState")
+npc_planner = NodePath("NpcPlanner")
+animation_player = NodePath("../AnimationPlayer")
+mode = 1
+logger = NodePath("Logger")
+
+[node name="Logger" parent="Npc" instance=ExtResource("10_gub3b")]
+
+[node name="NpcState" type="Node" parent="Npc"]
+script = ExtResource("5_yj258")
+
+[node name="NpcGoals" type="Node" parent="Npc"]
+
+[node name="NPCGoal_STAY_ALIVE" type="Node" parent="Npc/NpcGoals" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("6_rcoc4")
+goal_name = &"STAY ALIVE"
+priority = 2.0
+desired_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_eonp1")])
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCGoal_KILL_ENEMY" type="Node" parent="Npc/NpcGoals" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("6_rcoc4")
+goal_name = &"KILL ENEMY"
+priority = 1.0
+desired_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_wahhp")])
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCGoal_KEEP_APPROACH" type="Node" parent="Npc/NpcGoals" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("6_rcoc4")
+goal_name = &"KEEP APPROACH"
+desired_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_wahhp")])
+npc_state = NodePath("../../NpcState")
+
+[node name="NpcActions" type="Node" parent="Npc"]
+
+[node name="NPCAction_IDLE" type="Node" parent="Npc/NpcActions" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("7_6gc6m")
+action_name = &"IDLE"
+precondition_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_3ookv")])
+animation_name = &"IDLE"
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCAction_MOVE_AWAY" type="Node" parent="Npc/NpcActions" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("7_6gc6m")
+action_name = &"MOVE AWAY"
+precondition_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_g3i08"), SubResource("Resource_qouj6")])
+post_action_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_w4jer")])
+animation_name = &"MOVE"
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCAction_MOVE_BACK" type="Node" parent="Npc/NpcActions" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("7_6gc6m")
+action_name = &"MOVE BACK"
+precondition_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_g3i08"), SubResource("Resource_qouj6")])
+post_action_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_w4jer")])
+animation_name = &"MOVE"
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCAction_ATTACK" type="Node" parent="Npc/NpcActions" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("7_6gc6m")
+action_name = &"ATTACK"
+precondition_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_u4niw"), SubResource("Resource_ho121"), SubResource("Resource_r6or0")])
+post_action_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_tnw1d"), SubResource("Resource_mjvug")])
+animation_name = &"ATTACK"
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCAction_HURT" type="Node" parent="Npc/NpcActions" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("7_6gc6m")
+action_name = &"HURT"
+precondition_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_bnc4n"), SubResource("Resource_riu4i")])
+post_action_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_0rpcc")])
+cost = -1.0
+animation_name = &"HURT"
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCAction_DEAD" type="Node" parent="Npc/NpcActions" node_paths=PackedStringArray("npc", "npc_state")]
+script = ExtResource("9_1cher")
+npc = NodePath("../..")
+action_name = &"DEAD"
+precondition_expression_collection = Array[ExtResource("7_8u1s1")]([SubResource("Resource_u10he")])
+cost = -2.0
+animation_name = &"DEAD"
+npc_state = NodePath("../../NpcState")
+
+[node name="NpcPlanner" type="Node" parent="Npc" node_paths=PackedStringArray("npc_goals", "npc_actions")]
+script = ExtResource("9_05ykn")
+npc_goals = [NodePath("../NpcGoals/NPCGoal_STAY_ALIVE"), NodePath("../NpcGoals/NPCGoal_KILL_ENEMY"), NodePath("../NpcGoals/NPCGoal_KEEP_APPROACH")]
+npc_actions = [NodePath("../NpcActions/NPCAction_IDLE"), NodePath("../NpcActions/NPCAction_MOVE_AWAY"), NodePath("../NpcActions/NPCAction_MOVE_BACK"), NodePath("../NpcActions/NPCAction_ATTACK"), NodePath("../NpcActions/NPCAction_HURT"), NodePath("../NpcActions/NPCAction_DEAD")]

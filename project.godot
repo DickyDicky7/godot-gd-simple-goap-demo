@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="godot-gd-simple-goap-demo"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -18,7 +19,16 @@ config/icon="res://icon.svg"
 
 project/assembly_name="godot-gd-simple-goap-demo"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/godot_gd_simple_goap/plugin.cfg")
+
+[gui]
+
+theme/custom_font="res://assets/ThaleahFat.ttf"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+viewport/hdr_2d=true

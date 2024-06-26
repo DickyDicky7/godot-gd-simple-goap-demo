@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1j1wvtcgm0lj"]
+
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc.gd" id="1_ntt8r"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc_state.gd" id="2_k46tx"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc_goal.gd" id="3_1girm"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc_planner.gd" id="3_gp6da"]
+[ext_resource type="Script" path="res://addons/godot_gd_simple_goap/npc_action.gd" id="4_yoqa2"]
+[ext_resource type="PackedScene" uid="uid://dgl0nxkb6w5qo" path="res://addons/godot_gd_simple_goap/Logger.tscn" id="6_pkome"]
+
+[node name="Npc" type="Node" node_paths=PackedStringArray("npc_state", "npc_planner", "logger")]
+script = ExtResource("1_ntt8r")
+npc_state = NodePath("NpcState")
+npc_planner = NodePath("NpcPlanner")
+logger = NodePath("Logger")
+
+[node name="Logger" parent="." instance=ExtResource("6_pkome")]
+
+[node name="NpcState" type="Node" parent="."]
+script = ExtResource("2_k46tx")
+
+[node name="NpcGoals" type="Node" parent="."]
+
+[node name="NPCGoal01" type="Node" parent="NpcGoals" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("3_1girm")
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCGoal02" type="Node" parent="NpcGoals" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("3_1girm")
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCGoal03" type="Node" parent="NpcGoals" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("3_1girm")
+npc_state = NodePath("../../NpcState")
+
+[node name="NpcActions" type="Node" parent="."]
+
+[node name="NPCAction01" type="Node" parent="NpcActions" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("4_yoqa2")
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCAction02" type="Node" parent="NpcActions" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("4_yoqa2")
+npc_state = NodePath("../../NpcState")
+
+[node name="NPCAction03" type="Node" parent="NpcActions" node_paths=PackedStringArray("npc_state")]
+script = ExtResource("4_yoqa2")
+npc_state = NodePath("../../NpcState")
+
+[node name="NpcPlanner" type="Node" parent="." node_paths=PackedStringArray("npc_goals", "npc_actions")]
+script = ExtResource("3_gp6da")
+npc_goals = [NodePath("../NpcGoals/NPCGoal01"), NodePath("../NpcGoals/NPCGoal02"), NodePath("../NpcGoals/NPCGoal03")]
+npc_actions = [NodePath("../NpcActions/NPCAction01"), NodePath("../NpcActions/NPCAction02"), NodePath("../NpcActions/NPCAction03")]

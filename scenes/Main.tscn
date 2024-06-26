@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://4heobl1tdory"]
+
+[ext_resource type="Environment" uid="uid://btdrhdewkxj0i" path="res://materials/Main_Environment.tres" id="1_20law"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_w1po2"]
+[ext_resource type="PackedScene" uid="uid://dbt4hu7je2g1f" path="res://scenes/Enemy_01.tscn" id="2_ckjyn"]
+[ext_resource type="PackedScene" uid="uid://bphsc2t1tijev" path="res://scenes/Enemy_02.tscn" id="3_n7pjg"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="4_vwxqb"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_w1po2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="Env" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_20law")
+
+[node name="Enemy01" parent="." node_paths=PackedStringArray("npc_state", "opposed_enemy") instance=ExtResource("2_ckjyn")]
+npc_state = NodePath("Npc/NpcState")
+opposed_enemy = NodePath("../Enemy02")
+
+[node name="Enemy02" parent="." node_paths=PackedStringArray("npc_state", "opposed_enemy") instance=ExtResource("3_n7pjg")]
+npc_state = NodePath("Npc/NpcState")
+opposed_enemy = NodePath("../Enemy01")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+script = ExtResource("4_vwxqb")
