@@ -20,12 +20,10 @@ color = Color(0.1, 0.1, 0.1, 1)
 [node name="Env" type="WorldEnvironment" parent="."]
 environment = ExtResource("1_20law")
 
-[node name="Enemy01" parent="." node_paths=PackedStringArray("npc_state", "opposed_enemy") instance=ExtResource("2_ckjyn")]
-npc_state = NodePath("Npc/NpcState")
+[node name="Enemy01" parent="." node_paths=PackedStringArray("opposed_enemy") instance=ExtResource("2_ckjyn")]
 opposed_enemy = NodePath("../Enemy02")
 
-[node name="Enemy02" parent="." node_paths=PackedStringArray("npc_state", "opposed_enemy") instance=ExtResource("3_n7pjg")]
-npc_state = NodePath("Npc/NpcState")
+[node name="Enemy02" parent="." node_paths=PackedStringArray("opposed_enemy") instance=ExtResource("3_n7pjg")]
 opposed_enemy = NodePath("../Enemy01")
 
 [node name="Camera2D" type="Camera2D" parent="."]
